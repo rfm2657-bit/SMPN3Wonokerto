@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profil Lembaga Pendidikan Terbaik</title>
+    <!-- Memuat Tailwind CSS untuk styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
+    <style>
+        /* Mengatur font utama dan menambahkan efek scroll halus */
+        body {
+            font-family: 'Inter', sans-serif;
+            scroll-behavior: smooth;
+            background-color: #f7fafc; 
+        }
+        .nav-link:hover {
+            color: #11685e; 
+        }
+        .section-padding {
+            padding: 4rem 1rem; 
+        }
+        @media (min-width: 640px) {
+            .section-padding {
+                padding: 6rem 4rem;
+            }
+        }
+        
+        /* Custom styling for hero section */
+        #home {
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+        
+        /* Card shadow hover effect */
+        .feature-card {
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+        }
+        /* Style khusus untuk tombol PPDB */
+        #ppdb-cta {
+            transition: all 0.3s;
+        }
+        #ppdb-cta:hover {
+            transform: scale(1.05);
+            box-shadow: 0 15px 30px rgba(234, 88, 12, 0.4); 
+        }
+
+        /* Gaya untuk Galeri Gambar */
+        .gallery-item {
+            overflow: hidden;
+            border-radius: 0.75rem; /* rounded-xl */
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* shadow-md */
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 250px; /* Tinggi tetap untuk semua gambar */
+            object-fit: cover; /* Memastikan gambar memenuhi ruang tanpa terdistorsi */
+            transition: transform 0.5s ease;
+        }
+
+        .gallery-item img:hover {
+            transform: scale(1.1); /* Efek zoom saat hover */
+        }
+
+    </style>
+</head>
+<body class="text-gray-800">
+
+    <!-- Navbar/Header -->
+    <header class="sticky top-0 z-50 bg-white shadow-lg">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <!-- Logo/Nama Sekolah (Teal Theme) -->
+                <a href="#home" class="text-2xl font-bold text-teal-700 hover:text-teal-900 transition duration-300">
+                    <span class="text-orange-500">Lembaga</span> Edukasi Unggul
+                </a>
+
+                <!-- Navigasi Utama (Desktop) -->
+                <nav class="hidden md:flex space-x-8">
+                    <a href="#home" class="nav-link text-gray-600 hover:text-teal-600 font-medium transition duration-200">Beranda</a>
+                    <a href="#visi-misi" class="nav-link text-gray-600 hover:text-teal-600 font-medium transition duration-200">Visi Misi</a>
+                    <a href="#prestasi" class="nav-link text-gray-600 hover:text-teal-600 font-medium transition duration-200">Prestasi</a>
+                    <a href="#guru-staf" class="nav-link text-gray-600 hover:text-teal-600 font-medium transition duration-200">Guru & Staf</a>
+                    <a href="#ekstrakurikuler" class="nav-link text-gray-600 hover:text-teal-600 font-medium transition duration-200">Ekstrakurikuler</a>
+                    <!-- LINK BARU: GALERI -->
+                    <a href="#galeri" class="nav-link text-gray-600 hover:text-teal-600 font-medium transition duration-200">Galeri</a> 
+                    <!-- CTA Button Orange -->
+                    <a href="#ppdb" class="px-4 py-2 bg-orange-500 text-white rounded-lg shadow-md hover:bg-orange-600 transition duration-300 font-semibold">PPDB</a>
+                </nav>
+
+                <!-- Tombol Menu Mobile -->
+                <button id="mobile-menu-button" class="md:hidden text-gray-600 hover:text-teal-600 focus:outline-none">
+                    <!-- Icon SVG Menu -->
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+                    </svg>
+                </button>
+            </div>
+        </div>
+
+        <!-- Menu Mobile (Tersembunyi secara default) -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white shadow-xl pb-2">
+            <a href="#home" class="block px-4 py-2 text-gray-700 hover:bg-teal-50 hover:text-teal-600 font-medium border-t" onclick="closeMenu()">Beranda</a>
+            <a href="#visi-misi" class="block px-4 py-2 text-gray-700 hover:bg-teal-50 hover:text-teal-600 font-medium" onclick="closeMenu()">Visi Misi</a>
+            <a href="#prestasi" class="block px-4 py-2 text-gray-700 hover:bg-teal-50 hover:text-teal-600 font-medium" onclick="closeMenu()">Prestasi</a>
+            <a href="#guru-staf" class="block px-4 py-2 text-gray-700 hover:bg-teal-50 hover:text-teal-600 font-medium" onclick="closeMenu()">Guru & Staf</a>
+            <a href="#ekstrakurikuler" class="block px-4 py-2 text-gray-700 hover:bg-teal-50 hover:text-teal-600 font-medium" onclick="closeMenu()">Ekstrakurikuler</a>
+            <!-- LINK BARU: GALERI MOBILE -->
+            <a href="#galeri" class="block px-4 py-2 text-gray-700 hover:bg-teal-50 hover:text-teal-600 font-medium" onclick="closeMenu()">Galeri</a>
+            <a href="#ppdb" class="block mx-4 my-2 px-4 py-2 text-center bg-orange-500 text-white rounded-lg hover:bg-orange-600 font-semibold" onclick="closeMenu()">PPDB</a>
+        </div>
+    </header>
+
+    <!-- Bagian 1: Beranda (Home) -->
+    <section id="home" class="section-padding text-center min-h-[70vh] flex items-center justify-center">
+        <div class="max-w-4xl mx-auto p-6 rounded-xl relative z-20"> 
+            <p class="text-teal-100 text-lg font-semibold mb-3">Selamat Datang di</p>
+            <h1 class="text-5xl md:text-6xl font-extrabold text-white leading-tight mb-6">
+                Lembaga Edukasi Unggul
+            </h1>
+            <p class="text-xl text-teal-100 mb-8 max-w-2xl mx-auto">
+                Menciptakan Masa Depan Gemilang dengan Pendidikan Holistik dan Inovatif.
+            </p>
+            <!-- CTA Button White/Teal -->
+            <a href="#visi-misi" class="inline-block px-8 py-3 bg-white text-teal-600 font-bold text-lg rounded-full shadow-lg hover:bg-gray-100 transition duration-300 transform hover:scale-105">
+                Pelajari Lebih Lanjut
+            </a>
+        </div>
+    </section>
+
+    <!-- Bagian 2: Visi Misi -->
+    <section id="visi-misi" class="section-padding bg-white">
+        <div class="max-w-7xl mx-auto">
+            <h2 class="text-4xl font-bold text-center mb-12 text-teal-700">Visi dan Misi Lembaga</h2>
+
+            <div class="grid md:grid-cols-2 gap-12">
+                <!-- Visi Card -->
+                <div class="feature-card bg-teal-50 p-8 rounded-xl shadow-lg border-t-4 border-teal-600">
+                    <div class="text-4xl text-teal-600 mb-4">
+                        <!-- Icon SVG untuk Visi: Trending Up (Pencapaian/Pertumbuhan) -->
+                        <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path></svg>
+                    </div>
+                    <h3 class="text-3xl font-semibold mb-4 text-teal-800">Visi Kami</h3>
+                    <p class="text-gray-700 text-lg">
+                        Menjadi lembaga pendidikan terdepan yang menghasilkan pemimpin masa depan berintegritas, kreatif, dan berwawasan global.
+                    </p>
+                </div>
+
+                <!-- Misi Card -->
+                <div class="feature-card bg-white p-8 rounded-xl shadow-lg border-t-4 border-slate-600">
+                    <div class="text-4xl text-slate-600 mb-4">
+                        <!-- Icon SVG untuk Misi: Clipboard List (Rencana Aksi/Tujuan) -->
+                        <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m-7 4h8a2 2 0 002-2V7a2 2 0 00-2-2h-3a2 2 0 00-2-2H9a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+                    </div>
+                    <h3 class="text-3xl font-semibold mb-4 text-slate-800">Misi Kami</h3>
+                    <ul class="list-disc list-inside text-gray-700 space-y-2 text-lg pl-5">
+                        <li>Menerapkan kurikulum berbasis kompetensi yang relevan dengan perkembangan zaman.</li>
+                        <li>Mengembangkan potensi akademik dan non-akademik peserta didik secara maksimal.</li>
+                        <li>Menanamkan nilai-nilai karakter luhur dan etika dalam setiap kegiatan.</li>
+                        <li>Menciptakan lingkungan belajar yang inovatif, aman, dan inklusif.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Bagian 3: Prestasi -->
+    <section id="prestasi" class="section-padding bg-gray-50">
+        <div class="max-w-7xl mx-auto">
+            <h2 class="text-4xl font-bold text-center mb-12 text-orange-700">Prestasi dan Pencapaian</h2>
+            <p class="text-center text-lg text-gray-600 mb-10 max-w-3xl mx-auto">
+                Kami bangga atas berbagai pencapaian yang telah diraih oleh peserta didik kami, baik di tingkat lokal, nasional, maupun internasional.
+            </p>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Prestasi 1 -->
+                <div class="feature-card bg-white p-6 rounded-xl shadow-md border-b-4 border-orange-500 text-center">
+                    <h3 class="text-5xl font-extrabold text-orange-600 mb-2">12+</h3>
+                    <p class="text-lg font-semibold text-gray-700 mb-4">Medali Emas Nasional</p>
+                    <p class="text-gray-500">Dalam Olimpiade Sains dan Matematika selama 3 tahun terakhir.</p>
+                </div>
+                <!-- Prestasi 2 -->
+                <div class="feature-card bg-white p-6 rounded-xl shadow-md border-b-4 border-orange-500 text-center">
+                    <h3 class="text-5xl font-extrabold text-orange-600 mb-2">Juara 1</h3>
+                    <p class="text-lg font-semibold text-gray-700 mb-4">Kompetisi Robotika ASEAN</p>
+                    <p class="text-gray-500">Pengakuan internasional atas inovasi dan kreativitas tim teknologi.</p>
+                </div>
+                <!-- Prestasi 3 -->
+                <div class="feature-card bg-white p-6 rounded-xl shadow-md border-b-4 border-orange-500 text-center">
+                    <h3 class="text-5xl font-extrabold text-orange-600 mb-2">98%</h3>
+                    <p class="text-lg font-semibold text-gray-700 mb-4">Lulusan ke Perguruan Tinggi</p>
+                    <p class="text-gray-500">Tingkat penerimaan yang tinggi ke universitas terkemuka di dalam dan luar negeri.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Bagian 4: Guru dan Staf -->
+    <section id="guru-staf" class="section-padding bg-white">
+        <div class="max-w-7xl mx-auto">
+            <h2 class="text-4xl font-bold text-center mb-12 text-slate-700">Tim Pengajar dan Staf Profesional</h2>
+            <p class="text-center text-xl text-gray-600 mb-10 max-w-4xl mx-auto">
+                Didukung oleh para pendidik yang berdedikasi dan memiliki keahlian di bidangnya masing-masing.
+            </p>
+
+            <!-- Daftar Nama Guru -->
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6 text-center">
+                
+                <!-- Guru 1 -->
+                <div class="p-4 bg-slate-50 rounded-xl shadow-md feature-card border-b-2 border-teal-500">
+                    <div class="text-3xl mx-auto mb-2 text-slate-600 font-extrabold">A.B</div>
+                    <h4 class="text-lg font-semibold text-slate-800">Dra. Aida Budiman, M.Pd.</h4>
+                    <p class="text-sm text-teal-600 font-medium">Kepala Sekolah/Guru Kimia</p>
+                </div>
+
+                <!-- Guru 2 -->
+                <div class="p-4 bg-slate-50 rounded-xl shadow-md feature-card border-b-2 border-teal-500">
+                    <div class="text-3xl mx-auto mb-2 text-slate-600 font-extrabold">R.S</div>
+                    <h4 class="text-lg font-semibold text-slate-800">Rizky Setiawan, S.Kom.</h4>
+                    <p class="text-sm text-teal-600 font-medium">Guru Informatika & Robotika</p>
+                </div>
+
+                <!-- Guru 3 -->
+                <div class="p-4 bg-slate-50 rounded-xl shadow-md feature-card border-b-2 border-teal-500">
+                    <div class="text-3xl mx-auto mb-2 text-slate-600 font-extrabold">S.D</div>
+                    <h4 class="text-lg font-semibold text-slate-800">Siti Dewi, S.Hum.</h4>
+                    <p class="text-sm text-teal-600 font-medium">Guru Bahasa Indonesia & Sastra</p>
+                </div>
+
+                <!-- Guru 4 -->
+                <div class="p-4 bg-slate-50 rounded-xl shadow-md feature-card border-b-2 border-teal-500">
+                    <div class="text-3xl mx-auto mb-2 text-slate-600 font-extrabold">J.P</div>
+                    <h4 class="text-lg font-semibold text-slate-800">Joko Prasetiyo, S.Si.</h4>
+                    <p class="text-sm text-teal-600 font-medium">Guru Fisika Lanjutan</p>
+                </div>
+
+                <!-- Guru 5 -->
+                <div class="p-4 bg-slate-50 rounded-xl shadow-md feature-card border-b-2 border-teal-500">
+                    <div class="text-3xl mx-auto mb-2 text-slate-600 font-extrabold">M.K</div>
+                    <h4 class="text-lg font-semibold text-slate-800">Maya Kirana, M.Psi.</h4>
+                    <p class="text-sm text-teal-600 font-medium">Konselor Bimbingan & Karir</p>
+                </div>
+                
+                <!-- Guru 6 -->
+                <div class="p-4 bg-slate-50 rounded-xl shadow-md feature-card border-b-2 border-teal-500">
+                    <div class="text-3xl mx-auto mb-2 text-slate-600 font-extrabold">E.H</div>
+                    <h4 class="text-lg font-semibold text-slate-800">Eko Haryanto, S.Pd.</h4>
+                    <p class="text-sm text-teal-600 font-medium">Guru Pendidikan Jasmani</p>
+                </div>
+
+                <!-- Guru 7 -->
+                <div class="p-4 bg-slate-50 rounded-xl shadow-md feature-card border-b-2 border-teal-500">
+                    <div class="text-3xl mx-auto mb-2 text-slate-600 font-extrabold">L.S</div>
+                    <h4 class="text-lg font-semibold text-slate-800">Lina Suryani, M.A.</h4>
+                    <p class="text-sm text-teal-600 font-medium">Guru Bahasa Inggris</p>
+                </div>
+                
+                <!-- Guru 8 -->
+                <div class="p-4 bg-slate-50 rounded-xl shadow-md feature-card border-b-2 border-teal-500">
+                    <div class="text-3xl mx-auto mb-2 text-slate-600 font-extrabold">D.A</div>
+                    <h4 class="text-lg font-semibold text-slate-800">Dion Ardiansyah, S.E.</h4>
+                    <p class="text-sm text-teal-600 font-medium">Guru Ekonomi & Akuntansi</p>
+                </div>
+
+                <!-- Guru 9 -->
+                <div class="p-4 bg-slate-50 rounded-xl shadow-md feature-card border-b-2 border-teal-500">
+                    <div class="text-3xl mx-auto mb-2 text-slate-600 font-extrabold">F.H</div>
+                    <h4 class="text-lg font-semibold text-slate-800">Fahmi Hasan, S.Pd.</h4>
+                    <p class="text-sm text-teal-600 font-medium">Guru Sejarah & Budaya</p>
+                </div>
+
+                <!-- Guru 10 -->
+                <div class="p-4 bg-slate-50 rounded-xl shadow-md feature-card border-b-2 border-teal-500">
+                    <div class="text-3xl mx-auto mb-2 text-slate-600 font-extrabold">C.N</div>
+                    <h4 class="text-lg font-semibold text-slate-800">Chintya N., S.T.</h4>
+                    <p class="text-sm text-teal-600 font-medium">Staf Administrasi & Operator</p>
+                </div>
+            </div>
+
+             <div class="mt-10 text-center text-gray-500 italic">
+                <p>Setiap guru memiliki sertifikasi profesional dan berkomitmen untuk memberikan pengajaran terbaik.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Bagian 5: Kegiatan Ekstrakurikuler -->
+    <section id="ekstrakurikuler" class="section-padding bg-gray-50">
+        <div class="max-w-7xl mx-auto">
+            <h2 class="text-4xl font-bold text-center mb-12 text-teal-700">Kegiatan Ekstrakurikuler Unggulan</h2>
+            <p class="text-center text-lg text-gray-600 mb-10 max-w-4xl mx-auto">
+                Kami menawarkan beragam kegiatan ekstrakurikuler untuk mengembangkan minat, bakat, dan keterampilan non-akademik peserta didik.
+            </p>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Ekskul 1: Sains & Teknologi -->
+                <div class="feature-card bg-white p-6 rounded-xl shadow-md">
+                    <h3 class="text-2xl font-semibold text-teal-800 mb-3">Klub Robotika & Coding</h3>
+                    <p class="text-gray-600 mb-4">Mengembangkan keterampilan pemrograman, perakitan robot, dan logika berpikir komputasional.</p>
+                    <span class="inline-block bg-orange-100 text-orange-600 text-xs font-semibold px-3 py-1 rounded-full">Teknologi</span>
+                </div>
+                <!-- Ekskul 2: Seni & Budaya -->
+                <div class="feature-card bg-white p-6 rounded-xl shadow-md">
+                    <h3 class="text-2xl font-semibold text-teal-800 mb-3">Teater dan Tari Tradisional</h3>
+                    <p class="text-gray-600 mb-4">Meningkatkan kepercayaan diri, kemampuan berekspresi, dan melestarikan budaya lokal.</p>
+                    <span class="inline-block bg-teal-100 text-teal-600 text-xs font-semibold px-3 py-1 rounded-full">Seni</span>
+                </div>
+                <!-- Ekskul 3: Olahraga -->
+                <div class="feature-card bg-white p-6 rounded-xl shadow-md">
+                    <h3 class="text-2xl font-semibold text-teal-800 mb-3">Futsal dan Basket</h3>
+                    <p class="text-gray-600 mb-4">Membangun kerja sama tim, sportivitas, dan kebugaran fisik.</p>
+                    <span class="inline-block bg-orange-100 text-orange-600 text-xs font-semibold px-3 py-1 rounded-full">Olahraga</span>
+                </div>
+                <!-- Ekskul 4: Kepemimpinan -->
+                <div class="feature-card bg-white p-6 rounded-xl shadow-md md:col-span-1">
+                    <h3 class="text-2xl font-semibold text-teal-800 mb-3">Pramuka dan Jurnalistik</h3>
+                    <p class="text-gray-600 mb-4">Melatih kepemimpinan, kemandirian, dan kemampuan komunikasi tulis.</p>
+                    <span class="inline-block bg-teal-100 text-teal-600 text-xs font-semibold px-3 py-1 rounded-full">Kepemimpinan</span>
+                </div>
+                 <!-- Ekskul 5: Bahasa -->
+                <div class="feature-card bg-white p-6 rounded-xl shadow-md md:col-span-2">
+                    <h3 class="text-2xl font-semibold text-teal-800 mb-3">Klub Bahasa Asing (Inggris & Jepang)</h3>
+                    <p class="text-gray-600 mb-4">Fokus pada peningkatan kemampuan berbicara (speaking) dan praktik percakapan sehari-hari.</p>
+                    <span class="inline-block bg-orange-100 text-orange-600 text-xs font-semibold px-3 py-1 rounded-full">Bahasa</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- BAGIAN BARU: GALERI KEGIATAN (Section 6) -->
+    <section id="galeri" class="section-padding bg-white">
+        <div class="max-w-7xl mx-auto">
+            <h2 class="text-4xl font-bold text-center mb-12 text-orange-700">Galeri Kegiatan Sekolah</h2>
+            <p class="text-center text-xl text-gray-600 mb-10 max-w-4xl mx-auto">
+                Lihat momen-momen berharga dan semangat kegiatan belajar mengajar serta ekstrakurikuler di sekolah kami.
+            </p>
+
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6">
+                
+                <!-- Item Galeri 1: Robotika -->
+                <div class="gallery-item">
+                    <img src="https://placehold.co/600x400/10B981/ffffff?text=Robotika" alt="Foto kegiatan klub robotika" onerror="this.onerror=null;this.src='https://placehold.co/600x400/10B981/ffffff?text=Robotika'">
+                </div>
+
+                <!-- Item Galeri 2: Olahraga -->
+                <div class="gallery-item">
+                    <img src="https://placehold.co/600x400/F59E0B/ffffff?text=Futsal" alt="Foto kegiatan olahraga futsal" onerror="this.onerror=null;this.src='https://placehold.co/600x400/F59E0B/ffffff?text=Futsal'">
+                </div>
+
+                <!-- Item Galeri 3: Upacara Bendera -->
+                <div class="gallery-item">
+                    <img src="https://placehold.co/600x400/0E7490/ffffff?text=Upacara+Bendera" alt="Foto Upacara Bendera di sekolah" onerror="this.onerror=null;this.src='https://placehold.co/600x400/0E7490/ffffff?text=Upacara+Bendera'">
+                </div>
+
+                <!-- Item Galeri 4: Belajar di Kelas -->
+                <div class="gallery-item">
+                    <img src="https://placehold.co/600x400/27374D/ffffff?text=Kelas+Interaktif" alt="Foto suasana belajar interaktif di kelas" onerror="this.onerror=null;this.src='https://placehold.co/600x400/27374D/ffffff?text=Kelas+Interaktif'">
+                </div>
+
+                <!-- Item Galeri 5: Lab Sains -->
+                <div class="gallery-item">
+                    <img src="https://placehold.co/600x400/14B8A6/ffffff?text=Eksperimen+Sains" alt="Foto siswa melakukan eksperimen di laboratorium" onerror="this.onerror=null;this.src='https://placehold.co/600x400/14B8A6/ffffff?text=Eksperimen+Sains'">
+                </div>
+                
+                <!-- Item Galeri 6: Kesenian -->
+                <div class="gallery-item">
+                    <img src="https://placehold.co/600x400/F97316/ffffff?text=Pentas+Seni" alt="Foto pementasan seni atau teater" onerror="this.onerror=null;this.src='https://placehold.co/600x400/F97316/ffffff?text=Pentas+Seni'">
+                </div>
+
+                <!-- Item Galeri 7: Pramuka -->
+                <div class="gallery-item">
+                    <img src="https://placehold.co/600x400/0F766E/ffffff?text=Kegiatan+Pramuka" alt="Foto kegiatan pramuka di luar ruangan" onerror="this.onerror=null;this.src='https://placehold.co/600x400/0F766E/ffffff?text=Kegiatan+Pramuka'">
+                </div>
+
+                <!-- Item Galeri 8: Wisuda/Kelulusan -->
+                <div class="gallery-item">
+                    <img src="https://placehold.co/600x400/94A3B8/ffffff?text=Acara+Kelulusan" alt="Foto acara kelulusan atau wisuda" onerror="this.onerror=null;this.src='https://placehold.co/600x400/94A3B8/ffffff?text=Acara+Kelulusan'">
+                </div>
+            </div>
+
+            <div class="mt-10 text-center text-gray-500 italic">
+                <p>Anda dapat mengganti gambar placeholder di atas dengan foto-foto asli kegiatan sekolah Anda.</p>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Bagian 7: PPDB (Penerimaan Peserta Didik Baru) -->
+    <section id="ppdb" class="section-padding bg-teal-800 text-white">
+        <div class="max-w-7xl mx-auto text-center">
+            <h2 class="text-4xl md:text-5xl font-extrabold mb-4">
+                Siap Bergabung? <span class="text-orange-400">Daftar Sekarang!</span>
+            </h2>
+            <p class="text-xl opacity-80 mb-12 max-w-3xl mx-auto">
+                Kesempatan emas untuk mendapatkan pendidikan terbaik yang membentuk karakter dan potensi.
+            </p>
+
+            <!-- Tahapan Pendaftaran (Langkah-langkah dengan Ikon) -->
+            <h3 class="text-3xl font-bold mb-8 text-teal-300">4 Langkah Mudah PPDB</h3>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+
+                <!-- Langkah 1: Pendaftaran Online -->
+                <div class="p-5 bg-teal-700 rounded-xl shadow-lg border-b-4 border-orange-500 transform hover:scale-[1.02] transition duration-300">
+                    <div class="text-4xl mx-auto mb-3 text-orange-400">
+                        <!-- Icon: Form / Clipboard Check -->
+                        <svg class="w-10 h-10 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"></path></svg>
+                    </div>
+                    <p class="text-base font-bold text-white mb-1">Langkah 1</p>
+                    <p class="text-lg font-semibold">Pendaftaran Online</p>
+                    <p class="text-sm opacity-70">Isi formulir lengkap di website kami.</p>
+                </div>
+
+                <!-- Langkah 2: Verifikasi Dokumen -->
+                <div class="p-5 bg-teal-700 rounded-xl shadow-lg border-b-4 border-orange-500 transform hover:scale-[1.02] transition duration-300">
+                    <div class="text-4xl mx-auto mb-3 text-orange-400">
+                        <!-- Icon: Document/Berkas -->
+                        <svg class="w-10 h-10 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
+                    </div>
+                    <p class="text-base font-bold text-white mb-1">Langkah 2</p>
+                    <p class="text-lg font-semibold">Verifikasi Berkas</p>
+                    <p class="text-sm opacity-70">Serahkan dokumen pendukung ke admin.</p>
+                </div>
+
+                <!-- Langkah 3: Tes Seleksi -->
+                <div class="p-5 bg-teal-700 rounded-xl shadow-lg border-b-4 border-orange-500 transform hover:scale-[1.02] transition duration-300">
+                    <div class="text-4xl mx-auto mb-3 text-orange-400">
+                        <!-- Icon: Test/Kuis -->
+                        <svg class="w-10 h-10 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5v1a2 2 0 002 2h2a2 2 0 002-2V5M9 5h6"></path></svg>
+                    </div>
+                    <p class="text-base font-bold text-white mb-1">Langkah 3</p>
+                    <p class="text-lg font-semibold">Tes & Wawancara</p>
+                    <p class="text-sm opacity-70">Uji kemampuan akademik dan non-akademik.</p>
+                </div>
+
+                <!-- Langkah 4: Pengumuman -->
+                <div class="p-5 bg-teal-700 rounded-xl shadow-lg border-b-4 border-orange-500 transform hover:scale-[1.02] transition duration-300">
+                    <div class="text-4xl mx-auto mb-3 text-orange-400">
+                        <!-- Icon: Speaker/Pengumuman -->
+                        <svg class="w-10 h-10 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5.882c0-1.59 1.127-2.924 2.656-3.085l.5-.05C14.869 2.768 16 4.2 16 5.882v12.236c0 1.59-1.127 2.924-2.656 3.085l-.5.05C12.131 21.232 11 19.8 11 18.118V5.882zM4.5 12h2M4.5 16h2M4.5 8h2"></path></svg>
+                    </div>
+                    <p class="text-base font-bold text-white mb-1">Langkah 4</p>
+                    <p class="text-lg font-semibold">Pengumuman Hasil</p>
+                    <p class="text-sm opacity-70">Cek status penerimaan Anda secara resmi.</p>
+                </div>
+            </div>
+
+            <!-- Jadwal dan Kontak Info (Grid Card) -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 text-left mb-12">
+                
+                <!-- Kartu Jadwal -->
+                <div class="p-6 bg-white rounded-xl shadow-2xl text-gray-800">
+                    <h4 class="text-2xl font-bold mb-4 text-teal-700 flex items-center">
+                        <!-- Icon: Calendar/Jadwal -->
+                        <svg class="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
+                        Jadwal Penting PPDB
+                    </h4>
+                    <ul class="space-y-3">
+                        <li class="flex justify-between items-center border-b pb-2">
+                            <span class="font-semibold text-gray-600">Pendaftaran Dibuka:</span>
+                            <span class="font-bold text-teal-600">1 Nov 2025</span>
+                        </li>
+                        <li class="flex justify-between items-center border-b pb-2">
+                            <span class="font-semibold text-gray-600">Batas Akhir Berkas:</span>
+                            <span class="font-bold text-orange-600">20 Jan 2026</span>
+                        </li>
+                        <li class="flex justify-between items-center">
+                            <span class="font-semibold text-gray-600">Pengumuman Hasil:</span>
+                            <span class="font-bold text-teal-600">15 Feb 2026</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Kartu Kontak -->
+                <div class="p-6 bg-white rounded-xl shadow-2xl text-gray-800">
+                    <h4 class="text-2xl font-bold mb-4 text-teal-700 flex items-center">
+                        <!-- Icon: Phone/Kontak -->
+                        <svg class="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.5l1.69 3.38A2 2 0 0110.14 8.5L8.5 10.14a12.006 12.006 0 005.36 5.36l1.64-1.64a2 2 0 012.02-.34l3.38 1.69A2 2 0 0121 19v3a2 2 0 01-2 2H5a2 2 0 01-2-2v-3a2 2 0 012-2z"></path></svg>
+                        Hubungi Tim PPDB
+                    </h4>
+                    <ul class="space-y-3">
+                        <li class="flex justify-between items-center border-b pb-2">
+                            <span class="font-semibold text-gray-600">WhatsApp:</span>
+                            <a href="tel:+6281234567890" class="font-bold text-teal-600 hover:text-orange-500 transition duration-200">0812-3456-7890</a>
+                        </li>
+                        <li class="flex justify-between items-center border-b pb-2">
+                            <span class="font-semibold text-gray-600">Email:</span>
+                            <a href="mailto:ppdb@lembagaunggul.id" class="font-bold text-teal-600 hover:text-orange-500 transition duration-200">ppdb@lembagaunggul.id</a>
+                        </li>
+                        <li class="flex justify-between items-center">
+                            <span class="font-semibold text-gray-600">Jam Layanan:</span>
+                            <span class="font-bold text-teal-600">Senin - Jumat (08.00 - 16.00)</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- CTA Utama dengan Efek Hover Khusus -->
+            <a href="#" id="ppdb-cta" class="inline-block w-full md:w-1/2 text-center px-8 py-4 bg-orange-600 text-white font-extrabold text-2xl rounded-full shadow-xl hover:bg-orange-700 transition duration-300">
+                KLIK UNTUK AKSES FORMULIR
+            </a>
+            <p class="mt-4 text-sm opacity-70">Akses formulir pendaftaran online di sini.</p>
+
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <p class="mb-2">Lembaga Edukasi Unggul | Alamat: Jl. Pendidikan No. 10, Jakarta</p>
+            <p class="text-sm text-gray-400">&copy; 2025 Hak Cipta Dilindungi. Dibuat dengan Tailwind CSS.</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript untuk Navigasi Mobile dan Pengaturan Gambar -->
+    <script>
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const homeSection = document.getElementById('home');
+        
+        // Element untuk mengganti gambar
+        const imageUrlInput = document.getElementById('image-url');
+        const setImageButton = document.getElementById('set-image-button');
+
+        // URL Gambar Default
+        const DEFAULT_IMAGE_URL = 'https://i.pinimg.com/736x/a7/07/d6/a707d649e707d649e785a3a8e6f190d3.jpg';
+        const OVERLAY_GRADIENT = 'linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5))';
+
+        // Fungsi untuk menutup menu mobile
+        function closeMenu() {
+            mobileMenu.classList.add('hidden');
+        }
+
+        // Fungsi untuk menerapkan URL gambar ke background
+        function applyBackgroundImage(url) {
+            homeSection.style.backgroundImage = `${OVERLAY_GRADIENT}, url('${url}')`;
+        }
+
+        // Eksekusi saat DOM siap
+        document.addEventListener('DOMContentLoaded', () => {
+            // 1. Inisialisasi Menu Mobile
+            mobileMenuButton.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+            document.querySelectorAll('#mobile-menu a').forEach(item => {
+                item.addEventListener('click', closeMenu);
+            });
+            
+            // 2. Menerapkan Gambar Default saat halaman dimuat
+            applyBackgroundImage(DEFAULT_IMAGE_URL);
+            imageUrlInput.value = DEFAULT_IMAGE_URL;
+
+            // 3. Menambahkan Event Listener untuk tombol "Terapkan"
+            setImageButton.addEventListener('click', () => {
+                const newUrl = imageUrlInput.value.trim();
+                if (newUrl) {
+                    applyBackgroundImage(newUrl);
+                    // Tidak menggunakan alert, hanya menerapkan gambar.
+                } else {
+                    console.error("URL gambar kosong atau tidak valid.");
+                }
+            });
+        });
+    </script>
+</body>
+</html>
