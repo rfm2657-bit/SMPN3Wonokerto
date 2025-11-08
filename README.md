@@ -1,1 +1,1 @@
-# SMPN3Wonokerto
+# SMP3Wonokerto
